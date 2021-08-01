@@ -64,3 +64,16 @@ ax1.set_ylabel('Number of Immigrants')
 ax1.set_xlabel('Years')
 
 plt.show()
+
+
+## Regression Plot using seaborn
+
+plt.figure(figsize=(15, 10))
+
+sns.set(font_scale=1.5)
+sns.set_style('whitegrid')
+
+ax = sns.regplot(x='year', y='total', data=df_tot, color='green', marker='+', scatter_kws={'s': 200})
+ax.set(xlabel='Year', ylabel='Total Immigration')
+ax.set_title('Total Immigration to Canada from 1980 - 2013')
+plt.show()
