@@ -77,3 +77,40 @@ ax = sns.regplot(x='year', y='total', data=df_tot, color='green', marker='+', sc
 ax.set(xlabel='Year', ylabel='Total Immigration')
 ax.set_title('Total Immigration to Canada from 1980 - 2013')
 plt.show()
+
+
+## Creating Map using Folium
+# create a Stamen Toner map of the world centered around Bangladesh
+
+import folium
+world_map = folium.Map(location=[23.6850, 90.3563], zoom_start=4, tiles='Stamen Terrain')
+world_map
+
+
+
+## Choropleth map creating
+# download countries geojson file
+! wget --quiet https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/world_countries.json
+    
+print('GeoJSON file downloaded!')
+
+world_geo = r'world_countries.json' # geojson file
+
+# create a plain world map
+world_map = folium.Map(location=[0, 0], zoom_start=2)
+
+
+# generate choropleth map using the total immigration of each country to Canada from 1980 to 2013
+world_map.choropleth(
+    geo_data=world_geo,
+    data=df_can,
+    columns=['Country', 'Total'],
+    key_on='feature.properties.name',
+    fill_color='YlOrRd', 
+    fill_opacity=0.7, 
+    line_opacity=0.2,
+    legend_name='Immigration to Canada'
+)
+
+# display map
+world_map
