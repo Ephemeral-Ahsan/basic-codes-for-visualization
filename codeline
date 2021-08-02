@@ -114,3 +114,17 @@ world_map.choropleth(
 
 # display map
 world_map
+
+
+## Plotly
+
+## Create bubble chart here
+fig = px.scatter(bub_data, x="Reporting_Airline", y="Flights", size="Flights",
+                 hover_name="Reporting_Airline", title='Reporting Airline vs Number of Flights')
+fig.show()
+
+## Use px.pie function to create the chart. Input dataset.Values parameter will set values associated to the sector. 'Month' feature is passed to it.
+# labels for the sector are passed to the `names` parameter.
+
+fig = px.pie(data, values='Month', names='DistanceGroup', title='Distance group proportion by month')
+fig.show()
